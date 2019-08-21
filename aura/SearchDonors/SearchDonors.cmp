@@ -1,0 +1,59 @@
+<aura:component description="SearchDonors" controller="DonorController">
+    <aura:attribute name="bloodGroup" type="String" default=""/>
+    <aura:attribute name="localArea" type="String" default=""/>
+    <aura:attribute name="isLocalAreaShow" type="Boolean" default="false"/>
+    <aura:attribute name="searchResults" type="List"/>
+    <aura:attribute name="searchResultText" type="String" default=""/>
+    <div>
+        <div class="slds-box slds-m-horizontal--medium">
+            <div class="slds-text-heading_small">
+                Search Donors Here:
+            </div>
+            <div>
+                <lightning:select aura:id="searchField" value="{!v.bloodGroup}"
+                                  label="Select Blood Group" name="blood-group">
+                    <option value="">Select One</option>
+                    <option value="AB Negative (AB−)">AB Negative (AB−)</option>
+                    <option value="AB Positive (AB+)">AB Positive (AB+)</option>
+                    <option value="A Negative (A−)">A Negative (A−)</option>
+                    <option value="A Positive (A+)">A Positive (A+)</option>
+                    <option value="B Negative (B−)">B Negative (B−)</option>
+                    <option value="B Positive (B+)">B Positive (B+)</option>
+                    <option value="O Negative (O−)">O Negative (O−)</option>
+                    <option value="O Positive (O+)">O Positive (O+)</option>
+                </lightning:select>
+                <div aura:id="bloodGroup-error" class="slds-hide slds-p-top_xxx-small slds-required custom-border">
+                    Please select blood group.
+                </div>
+                <aura:if isTrue="{!v.isLocalAreaShow}">
+                    <lightning:input aura:id="searchField" value="{!v.localArea}" placeholder="eg. jhumri telaiya , koderma"
+                                     label="Local Area Name"/>
+                    <div aura:id="area-error" class="slds-hide slds-p-top_xxx-small slds-required custom-border">
+                        Please enter.
+                    </div>
+                    <lightning:button variant="base" label="Remove Local Area?" onclick="{!c.hideLocalArea}"/>
+                    <aura:set attribute="else">
+                        <lightning:button variant="base" label="Add Local Area?" onclick="{!c.showLocalArea}"/>
+                    </aura:set>
+                </aura:if>
+                <lightning:button class="slds-size_1-of-1" label="Search Donors" variant="brand"
+                                  onclick="{!c.searchDonors}"/>
+            </div>
+        </div>
+        <div id="search-result">
+            <aura:if isTrue="{!v.searchResults.length > 0}">
+                <div class="slds-m-top--small slds-m-horizontal--small font-style">We have found {!v.searchResults.length} donors/donor and details are following:</div>
+                <aura:iteration items="{!v.searchResults}" var="contact">
+                    <div class="slds-m-around--small">
+                        <c:SearchResult contact="{!contact}"/>
+                    </div>
+                </aura:iteration>
+                <aura:set attribute="else">
+                    <div class="slds-align--absolute-center slds-text-heading_small error-font">
+                            {!v.searchResultText}
+                    </div>
+                </aura:set>
+            </aura:if>
+        </div>
+    </div>
+</aura:component>

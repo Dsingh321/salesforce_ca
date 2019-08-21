@@ -1,0 +1,106 @@
+<!--
+ - Created by Deepak Singh on 3/13/2019.
+ -->
+
+<aura:component description="NewDonor" access="public" controller="DonorController">
+
+    <aura:attribute name="validationMessage" type="String" default=""/>
+     <aura:attribute name="succussMessage" type="String" default=""/>
+    <aura:attribute name="newDonor" type="Contact" default="{'sObjectType':'Contact'}"/>
+
+    <aura:if isTrue="{!v.validationMessage !=''}">
+        <section role="alertdialog" class="slds-modal slds-fade-in-open slds-modal_prompt">
+            <div class="slds-modal__container error-modal-size">
+                <header class="slds-modal__header slds-theme_error slds-theme_alert-texture">
+                    <h2 class="slds-text-heading_medium" id="prompt-heading-id">Something Error Please Review!</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="prompt-message-wrapper">
+                    <p>{!v.validationMessage}</p>
+                </div>
+                <footer class="slds-modal__footer slds-theme_default">
+                    <lightning:button label="Okay" variant="neutral" onclick="{!c.closeError}"/>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+    <aura:if isTrue="{!v.succussMessage !=''}">
+        <section role="alertdialog" class="slds-modal slds-fade-in-open slds-modal_prompt">
+            <div class="slds-modal__container error-modal-size">
+                <header class="slds-modal__header slds-theme_success slds-theme_alert-texture">
+                    <h2 class="slds-text-heading_medium" id="prompt-heading-id">congratulations!!</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="prompt-message-wrapper">
+                    <p>{!v.succussMessage}</p>
+                </div>
+                <footer class="slds-modal__footer slds-theme_default">
+                    <lightning:button label="Okay" variant="neutral" onclick="{!c.closeError}"/>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+
+            <!-- Display the new contact form -->
+            <div class="Create Contact slds-m-horizontal--medium">
+                <lightning:card iconName="action:user" title="Add New Donor" class="slds-card_boundary">
+                    <div class="slds-p-horizontal--small">
+                        <lightning:select aura:id="vewDonorField" value="{!v.newDonor.Title}" label="Title"
+                                          name="blood-group">
+                            <option value="">Select One</option>
+                            <option value="Mr.">Mr.</option>
+                            <option value="Ms.">Ms.</option>
+                            <option value="Mrs.">Mrs.</option>
+                            <option value="Dr">Dr.</option>
+                        </lightning:select>
+                        <lightning:input aura:id="vewDonorField" label="Full Name" value="{!v.newDonor.LastName}"
+                                         required="true" pattern="^[a-zA-Z][a-zA-Z0-9 ]+$"
+                                         messageWhenPatternMismatch="Invalid Name"/>
+                        <lightning:input type="date" aura:id="vewDonorField" label="Date of Birth" value="{!v.newDonor.Birthdate}"
+                                       />
+                        <lightning:input aura:id="vewDonorField" label="Mobile Number" value="{!v.newDonor.MobilePhone}"
+                                         required="true" pattern="[0-9]{10}" type="tel" 
+                                         messageWhenPatternMismatch="Please enter 10 digits number only"/>
+                        <lightning:input aura:id="vewDonorField" label="Alternate Phone Number"
+                                         value="{!v.newDonor.OtherPhone}" pattern="[0-9]{10}" type="tel"
+                                         messageWhenPatternMismatch="Please enter 10 digits number only"/>
+                        <lightning:select aura:id="vewDonorField" value="{!v.newDonor.Gender__c}" label="Gender"
+                                          name="gender"
+                                          required="true">
+                            <option value="">Select One</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </lightning:select>
+                        <lightning:textarea aura:id="vewDonorField" value="{!v.newDonor.MailingStreet}"
+                                            label="Village/Area Name" required="true" pattern="^[a-zA-Z][a-zA-Z0-9 ]+$"
+                                            messageWhenPatternMismatch="Invalid Name"/>
+                        <lightning:input aura:id="vewDonorField" value="{!v.newDonor.MailingCity}"
+                                         label="Local Area Name" required="true"/>
+
+                        <lightning:select aura:id="vewDonorField" value="{!v.newDonor.Blood_Group__c}"
+                                          label="Blood Group"
+                                          name="blood-group"
+                                          required="true">
+                            <option value="">Select One</option>
+                            <option value="AB Negative (AB−)">AB Negative (AB−)</option>
+                            <option value="AB Positive (AB+)">AB Positive (AB+)</option>
+                            <option value="A Negative (A−)">A Negative (A−)</option>
+                            <option value="A Positive (A+)">A Positive (A+)</option>
+                            <option value="B Negative (B−)">B Negative (B−)</option>
+                            <option value="B Positive (B+)">B Positive (B+)</option>
+                            <option value="O Negative (O−)">O Negative (O−)</option>
+                            <option value="O Positive (O+)">O Positive (O+)</option>
+                        </lightning:select>
+                        <lightning:textarea aura:id="vewDonorField" value="{!v.newDonor.Description}"
+                                            pattern="^[a-zA-Z][a-zA-Z0-9 ]+$" messageWhenPatternMismatch="Invalid Name"
+                                            label="Any Additional about donor(If you want to share)" name="reason"
+                        />
+                        <div class="slds-m-around--medium">
+                            <lightning:button class="slds-size_1-of-1" label="Save Donor" variant="brand"
+                                              onclick="{!c.handleSaveDonor}"/>
+                        </div>
+                    </div>
+                </lightning:card>
+            </div>
+       
+</aura:component>

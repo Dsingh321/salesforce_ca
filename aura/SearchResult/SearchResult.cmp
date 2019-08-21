@@ -1,0 +1,32 @@
+<!--
+ - Created by Deepak Singh on 3/31/2019.
+ -->
+
+<aura:component description="SearchResult">
+    <aura:attribute name="contact" type="Contact"/>
+    <lightning:card iconName="standard:people" class="slds-card_boundary" title="{!v.contact.Name}">
+        <div class="slds-p-horizontal_small slds-border_top">
+            <p><span class="slds-form-element__label"> Blood Group  :</span>
+                    {!v.contact.Blood_Group__c}
+            </p>
+            <p><span class="slds-form-element__label"> Last Donation Date  :</span>
+                <lightning:formattedDateTime value="{!v.contact.Last_Donation_Date__c}"/>
+            </p>
+            <p><span class="slds-form-element__label"> Gender  :</span>
+                    {!v.contact.Gender__c}
+            </p>
+            <p><span class="slds-form-element__label"> Mobile Number :</span>
+                <lightning:formattedPhone value="{!v.contact.MobilePhone}"/>
+            </p>
+            <p><span class="slds-form-element__label"> Other Number :</span>
+                <lightning:formattedPhone value="{!v.contact.Phone}"/>
+            </p>
+            <p><span class="slds-form-element__label">Village :</span>
+                    {!v.contact.MailingStreet}
+            </p>
+            <p><span class="slds-form-element__label">Local Area :</span>
+                    {!v.contact.MailingCity}
+            </p>
+        </div>
+    </lightning:card>
+</aura:component>

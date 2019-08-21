@@ -1,0 +1,8 @@
+.THIS {
+}
+.THIS .singleRow{
+    margin-top: 6px;
+}
+.THIS .mylookup > div > input{
+    border: transparent !important;
+}

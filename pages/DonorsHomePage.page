@@ -1,0 +1,24 @@
+<apex:page id="DonorsHomePage" sideBar="false" showHeader="false">
+    <head>
+        <title>Donors Home</title>
+        <apex:includeLightning />
+    </head>
+    <body>
+    <div id="page-load">
+    </div>
+
+    <script>
+        $Lightning.use("c:BloodDonorsApp", function () {
+            $Lightning.createComponent(
+                    "c:BloodDonorsDashboard",
+                    {},
+                    "page-load",
+                    function (cmp) {
+                        console.log('Component Load From VF PAGE');
+                    }
+            );
+        });
+
+    </script>
+    </body>
+</apex:page>

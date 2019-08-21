@@ -1,0 +1,69 @@
+<!--
+ - Created by Deepak Singh on 7/30/2019.
+ -->
+
+<aura:component description="AddDonation" implements="flexipage:availableForRecordHome" controller="DonorController">
+
+    <aura:attribute name="successMessage" type="String" default=""/>
+    <aura:attribute name="newDonation" type="Donation_History__c" default="{'sObjectType':'Donation_History__c'}"/>
+    <aura:attribute name="donor" type="object"/>
+    <aura:attribute name="todayDate" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+
+    <aura:if isTrue="{!v.successMessage !=''}">
+        <section role="alertdialog" class="slds-modal slds-fade-in-open slds-modal_prompt">
+            <div class="slds-modal__container error-modal-size">
+                <header class="slds-modal__header slds-theme_success slds-theme_alert-texture">
+                    <h2 class="slds-text-heading_medium" id="prompt-heading-id">Information</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="prompt-message-wrapper">
+                    <p>{!v.successMessage}</p>
+                </div>
+                <footer class="slds-modal__footer slds-theme_default">
+                    <lightning:button label="Close" variant="neutral" onclick="{!c.closeMessage}"/>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+
+    <!-- Display the new donation form -->
+    <div class="section slds-m-horizontal--medium">
+        <lightning:card iconName="utility:record_update" title="Add Donation" class="slds-card_boundary">
+            <div id="select-donor" class="slds-p-horizontal--small">
+                <c:FilterLookUpParentDependentCmp
+                        objectName="Contact"
+                        field_API_text="Name,MobilePhone"
+                        field_API_val="Id"
+                        limit="5"
+                        field_API_search="Name"
+                        lookupIcon="standard:user"
+                        selItem="{!v.donor}"
+                        placeholder="Enter text to search"
+                        lookUpLabel="Select Donor"
+                        isRequired="true"
+                />
+                <aura:if isTrue="{!v.donor == null}">
+                    <div aura:id="donor-lookup-ErrorId" class="slds-hide slds-text-color_error">
+                        Please select donor.
+                    </div>
+                </aura:if>
+            </div>
+            <div id="donation-form" class="slds-p-top--medium slds-p-horizontal--small">
+                <aura:if isTrue="{!v.donor}">
+                    <lightning:input aura:id="input" messageWhenRangeOverflow="Date should be today or earlier" max="{!v.todayDate}" type="date" label="Donation Date"
+                                     required="true" value="{!v.newDonation.Donation_Date__c}"/>
+                    <lightning:select aura:id="input" name="unit" label="How many units donated?" required="true">
+                        <option value="">choose one...</option>
+                        <option value="1 Unit">1 Unit</option>
+                        <option value="2 Unit">2 Unit</option>
+                        <option value="3 Unit">3 Unit</option>
+                    </lightning:select>
+                    <lightning:button label="Save" class="slds-align_absolute-center slds-m-top--small"
+                                      onclick="{!c.saveDonation}" variant="brand"/>
+                </aura:if>
+            </div>
+        </lightning:card>
+    </div>
+</aura:component>

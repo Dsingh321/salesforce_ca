@@ -1,0 +1,19 @@
+/**
+ * Created by Deepak Singh on 3/31/2019.
+ */
+.THIS {
+}
+.THIS .custom-border {
+    border-top: 3px solid rgb(194, 57, 52);
+    font-size: 0.75rem;
+}
+.THIS .font-style{
+    color: green;
+    font-style: oblique;
+    font-weight: bolder;
+}
+.THIS .error-font{
+    color: #9f0000;
+    font-style: oblique;
+    font-weight: bolder;
+}

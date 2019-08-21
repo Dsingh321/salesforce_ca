@@ -1,0 +1,16 @@
+<!--
+ - Created by Deepak Singh on 4/9/2019.
+ -->
+
+<aura:component description="DonorsSlider" controller="DonorsSliderController">
+    <aura:attribute name="donors" type="List"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <div>
+        <lightning:carousel scrollDuration="4" >
+            <aura:iteration items="{!v.donors}" var="donor">
+                <lightning:carouselImage class="custom-width" src="{!donor.imageUrl}"/>
+            </aura:iteration>
+        </lightning:carousel>
+    </div>
+</aura:component>

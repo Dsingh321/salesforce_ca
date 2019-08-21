@@ -1,0 +1,61 @@
+<aura:component description="DonorsHome">
+    <div class="slds-m-horizontal--small">
+        <div class="slds-box">
+            <div class="slds-text-heading_medium slds-text-align_center">Welcome to The Blood Donor's in Koderma
+                Portal.
+            </div>
+        </div>
+        <div class="slds-m-top--x-small">
+            <c:DonorsSlider/>
+        </div>
+        <div class="slds-m-vertical--x-small">
+            <div id="heading" class="slds-p-around--xx-small slds-theme--alt-inverse " style="border-radius: 3px;">
+                Important Information about blood take and give .
+            </div>
+            <div id="heading-content">
+                <img src="http://lh5.ggpht.com/-qXDpmTn4SmE/UHBH_1YhL7I/AAAAAAAABtI/O28_4W8vnGg/Blood%252520Type_thumb%25255B1%25255D.jpg"
+                     alt="giveAndTake"/>
+            </div>
+        </div>
+        <div id="whats-aap-group" class="slds-m-vertical--x-small">
+            <div id="heading" class="slds-p-around--xx-small slds-theme--alt-inverse " style="border-radius: 3px;">
+                Want to join us on social media. Please visit. whatsApp group, Please click on the following link.
+            </div>
+            <div id="heading-content">
+                <div id="whats-app">
+                    <label class="slds-form-element__label">
+                        <a href="https://bit.ly/2uHIpmj">Join us on whatsApp group.</a>
+                    </label>
+                    <!-- <lightning:formattedUrl value="https://bit.ly/2uHIpmj"
+                                             tooltip="click to join"/>-->
+                </div>
+                <div id="facebook-page">
+                    <label class="slds-form-element__label">
+                        <a href="http://bit.ly/2YNmXdi">Like our facebook page.</a> <br/>
+                    </label>
+                    <!--  <lightning:formattedUrl value="http://bit.ly/2Uk2qPe"
+                                              tooltip="click to join"/>-->
+                </div>
+                <div id="facebook-group">
+                    <label class="slds-form-element__label">
+                        <a href="http://bit.ly/2Uk2qPe">Join us on facebook group.</a>
+                    </label>
+                    <!-- <lightning:formattedUrl value="http://bit.ly/2YNmXdi"
+                                             tooltip="click to join"/>-->
+                </div>
+
+            </div>
+        </div>
+        <div id="admin-help" class="slds-m-vertical--x-small">
+            <div id="heading" class="slds-p-around--xx-small slds-theme--alt-inverse " style="border-radius: 3px;">
+                Need More help about this application. (Please send a whatsApp message to admin.)
+            </div>
+            <div id="heading-content">
+                <a href="https://api.whatsapp.com/send?phone=919031319818">
+                    9031319818 
+                </a>
+
+            </div>
+        </div>
+    </div>
+</aura:component>

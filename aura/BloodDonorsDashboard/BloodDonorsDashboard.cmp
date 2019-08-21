@@ -1,0 +1,39 @@
+<!--
+ - Created by Deepak Singh on 3/13/2019.
+ -->
+
+<aura:component description="BloodDonorsDashboard">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <aura:attribute name="selectedTab" type="String" default="ViewCustomer"/>
+    <aura:attribute name="toastMessage" type="String" default=""/>
+
+    <aura:attribute name="isSpinnerShow" type="boolean" default="false" access="global"/>
+    <aura:handler action="{!c.closeSpinner}" event="aura:doneWaiting"/>
+    <aura:handler action="{!c.showSpinner}" event="aura:waiting"/>
+
+
+    <!--Spinner-->
+    <aura:if isTrue="{!v.isSpinnerShow}">
+        <lightning:spinner alternativeText="Loading" size="large" variant="brand"/>
+    </aura:if>
+    <lightning:tabset selectedTabId="DonorsHome" class="tab-home">
+        <lightning:tab onactive="{! c.createDynamicComponent}" label="Home" id="DonorsHome">
+            <!-- <c:DonorsHome />-->
+        </lightning:tab>
+        <lightning:tab onactive="{! c.createDynamicComponent}" label="Search Donors" id="SearchDonors">
+            <!--  <c:SearchDonors />-->
+        </lightning:tab>
+        <lightning:tab onactive="{! c.createDynamicComponent}" label="Add New Donor" id="NewDonor">
+            <!--<c:NewDonor/>-->
+        </lightning:tab>
+        <lightning:tab onactive="{! c.createDynamicComponent}" label="Add New Donation" id="AddDonation">
+            <!--<c:AddDonation/>-->
+        </lightning:tab>
+      <!--  <lightning:tab onactive="{! c.createDynamicComponent}" label="Top Donors" id="TopDonor">
+            &lt;!&ndash;<c:TopDonor/>&ndash;&gt;
+        </lightning:tab>-->
+
+    </lightning:tabset>
+
+</aura:component>
