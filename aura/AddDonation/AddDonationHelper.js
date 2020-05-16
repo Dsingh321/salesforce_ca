@@ -6,7 +6,7 @@
         let allValid = c.find('input').reduce(function (validSoFar, inputCmp) {
             inputCmp.showHelpMessageIfInvalid();
             return validSoFar && inputCmp.get('v.validity').valid;
-        }, true);
+        }, true);  
         if (allValid) {
             return true;
         }
